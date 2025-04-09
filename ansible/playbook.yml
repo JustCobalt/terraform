@@ -1,0 +1,19 @@
+---
+- name: Installer NGINX
+  hosts: web
+  become: true
+  tasks:
+    - name: Mettre à jour apt
+      apt:
+        update_cache: yes
+
+    - name: Installer nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Activer nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
